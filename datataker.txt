@@ -1,5 +1,6 @@
-Begin"AAWS_V19"
+Begin"AAWS_V20"
 
+'Add Pyranometer SMP3V
 'Add Barometer Setra
 'Add RMYoung 05103V
 'Hapus scaling cmp 6 & 3
@@ -343,14 +344,14 @@ if(40cv>1100){40CV=1100}
 'if(260cv==2){62cv=62cv+1;69cv(w)=0;68cv(w)=0}
 'if(62cv<60cv){62cv=60cv}
 
-4*V(=60cv,w)                          		'Pyranometer Kipp n Zonen CMP3
-60cv(w)=((60cv/xxx)*608CV)+609CV         	'xxx = Nilai Sensitivity dibagi 1000 Lihat di Body Sensor
-if(60cv<0){60cv=0}
-if(60cv>2000){60cv=2000}
-if(60cv>120){69cv=1}
-260cv(w)=69cv+68cv
-if(260cv==2){61cv=61cv+1;69cv(w)=0;68cv(w)=0}
-if(62cv<60cv){62cv=60cv}
+'4*V(=60cv,w)                          		'Pyranometer Kipp n Zonen CMP3
+'60cv(w)=((60cv/xxx)*608CV)+609CV         'xxx = Nilai Sensitivity dibagi 1000 Lihat di Body Sensor
+'if(60cv<0){60cv=0}
+'if(60cv>2000){60cv=2000}
+'if(60cv>120){69cv=1}
+'260cv(w)=69cv+68cv
+'if(260cv==2){61cv=61cv+1;69cv(w)=0;68cv(w)=0}
+'if(62cv<60cv){62cv=60cv}
 
 '4*V(S6,=60cv,w)                         	'Pyranometer SP Lite
 '60cv(w)=((60cv/xxx)*608CV)+609CV        	'xxx = Nilai Sensitivity dibagi 1000 Lihat di Body Sensor
@@ -360,6 +361,15 @@ if(62cv<60cv){62cv=60cv}
 '260cv(w)=69cv+68cv
 'if(260cv==2){61cv=61cv+1;69cv(w)=0;68cv(w)=0}
 'if(62cv<60cv){62cv=60cv}
+
+4*V(=60cv,w)                          		'Pyranometer Kipp n Zonen SMP3V
+60cv(w)=((60cv/xxx)*608CV)+609CV          'xxx = Nilai Sensitivity dibagi 1000 Lihat di Calibration Certificate
+if(60cv<0){60cv=0}
+if(60cv>2000){60cv=2000}
+if(60cv>120){69cv=1}
+260cv(w)=69cv+68cv
+if(260cv==2){61cv=61cv+1;69cv(w)=0;68cv(w)=0}
+if(62cv<60cv){62cv=60cv}
 '''''''''''''''''''''''''''''''''
 
 RD1M                                     	'Schedule D Untuk Sampling 1 Menit
@@ -588,7 +598,7 @@ RF(Data:300kB)10M                               	'Schedule F (Buffer)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 85cv(ff1,"Wind_Speed 2m_Avg~m/s")               	'Wind Speed avg 2m
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-95cv(ff1,"Wind_Speed 1/2m_Avg~m/s")            	    'Wind Speed avg 0.5m
+95cv(ff1,"Wind_Speed 1/2m_Avg~m/s")            	  'Wind Speed avg 0.5m
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 '105cv(ff1,"Turf Min Temp_Avg~C")               	'Turf Min Temp
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -635,4 +645,4 @@ If1(29SV==2)"Data Terkirim"
 If(29SV==2){29SV=0}
 
 End
-Runjobonreset"AAWS_V19"
+Runjobonreset"AAWS_V20"
