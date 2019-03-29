@@ -1,0 +1,661 @@
+Begin"AAWS_V20"
+
+'Add Pyranometer SMP3V versi modbus (br_29319)
+'Add Pyranometer SMP3V versi analog
+'Add Barometer Setra
+'Add RMYoung 05103V
+'Hapus scaling cmp 6 & 3
+'Revisi program angin rmyoung 05305
+'Add program CMP3
+'add Vaisalla Trh HMP155 serial and Tekbox
+'add Thies US Clima Sensor (br_18/1/18)
+'remove NTP bmkg (br_12/1/18)
+'add lama penyinaran %
+'Update AAWS_serang_V9- MX,MN,AV (br_11/1/18)
+'add NTP server profile
+'compact inisialiasi
+'From SMDG_V8
+'Tambah ket list sensor
+'Edit by Br 13 June 17
+'Error code no sensor -999, broken sensor -888
+'Rubah Time Sampling
+'Tambah formula Y=Ax+B; A(Multiplexer) dan B(Offset)
+'Rubah Command Maximum, Minimum dan Rata-rata: Mx(Max), Mn(Min), dan AV(Rata-rata)
+'Tambah sensor WD10m Casella X100246
+'Edited by Hn 18 Agustus 17
+
+Profile"Ethernet""Ip_Address"="192.168.10.21"
+Profile"Ethernet""Gateway"="192.168.10.10"
+Profile"Network""DNS_Server_1"="192.168.10.10"
+Profile"Network""DNS_Server_2"="8.8.8.8"
+Profile ntp background_enable="yes"
+Profile ntp background_period="1H"
+Profile ntp min_correction="0"
+Profile ntp timeout="5s"
+Profile locale time_zone="0H"
+Profile sersen_port function="serial"                'HMP155 serial
+Profile sersen_port bps="9600"
+Profile sersen_port mode="rs485"
+------------------------------
+'Profile sersen_port function="modbus_master"        'Pyrano SMP3V modbus
+'Profile sersen_port bps="19200"
+'Profile sersen_port flow="NOFC"
+'Profile sersen_port parity="even"
+'Profile modbus_server sersen_address="1"
+
+
+
+
+P28=1                       	'Output 12v cem always on
+P32=5                       	'Significant digit = 5
+P41=0                       	'Sub second decimal places
+29SV=0                      	'Clear ftp status
+1sspwr=1                    	'12 V Logger on
+'''''''''''''''''''''''''''''''''
+'S1=0,60,0,10               	'WS Thies US 2D 10m
+'8cv=1                      	'Multiplier WS 10m
+'9cv=0                      	'Offset WS 10m
+
+'8cv=1                      	'Multiplier WS Thies US Clima Sensor 10m
+'9cv=0                      	'Offset WS Thies US CS 10m
+
+'8cv=1                      	'Multiplier WS RM young 05108 10m
+'9cv=0                      	'offset WS 10m
+
+'S1=0,50,0,5                	'WS RM young 05305V 10m
+'8cv=1                      	'Muliplier WS 10m
+'9cv=0                      	'Offset WS 10m
+
+S1=0,100,0,5                	'WS RM young 05103V 10m
+8cv=1                      	  'Muliplier WS 10m
+9cv=0                      	  'Offset WS 10m
+
+'8cv=1                       	'Muliplier WS 10m Wind RM Young 05305 (Frekuensi)
+'9cv=0                       	'Offset WS 10m Wind RM Young 05305 (Frekuensi)
+
+'S1=0,75,0,5                	'WS Casella X100246 10m
+'8cv=1                      	'Multiplier WS 10m
+'9cv=0                      	'Offset WS 10m
+'''''''''''''''''''''''''''''''''
+'S2=0,359,0,10              	'WD Thies 2D 10m
+'18cv=1                     	'Multiplier WD 10m
+'19cv=0                     	'Offset WD 10m
+
+'18CV=1                     	'Multiplier WD Thies Clima US 10m
+'19CV=0                     	'Offset WD Thies Clima US 10m
+
+'S2=0,359,0,5               	'WD RM Young 05305V 10m
+'18cv=1                     	'Multiplier WD 10m
+'19cv=0                     	'Offset WD 10m
+
+S2=0,359,0,5               	  'WD RM Young 05103V 10m
+18cv=1                     	  'Multiplier WD 10m
+19cv=0                     	  'Offset WD 10m
+
+'18cv=1                      	'Multiplier WD 05108 10m, 05305
+'19cv=0                      	'Offset 05108 WD10m, 05305
+
+'S2=0,359,0,1800            	'WD Casella 178035C-04 10m
+'18cv=1                     	'Multiplier WD  10m
+'19cv=0                     	'Offset WD 10m
+'''''''''''''''''''''''''''''''''
+'S3=-30,70,0,10              	'Air Temperature Thies  1.5m
+'28cv=1                      	'Multiplier Temp 1.5m
+'29cv=0                      	'Offset Temp 1.5m
+
+S3=-40,60,0,1000           	  'Air Temperature Vaisalla HMP155A  1.5m
+28cv=1                     	  'Multiplier Temp 1.5m
+29cv=0                     	  'Offset Temp 1.5m
+
+28cv=1                     	  'Multiplier Temp 1.5m Air Temperature Vaisalla HMP155D (PT100)  1.5m
+29cv=0                     	  'Offset Temp 1.5m Air Temperature Vaisalla HMP155D (PT100)  1.5m
+
+'28cv=1                     	'Multiplier Temp 1.5m Air Temperature Vaisalla HMP155 serial 1.5m
+'29cv=0                     	'Offset Temp 1.5m Air Temperature Vaisalla HMP155 serial 1.5m
+'''''''''''''''''''''''''''''''''
+'S4=0,100,0,1                	'RH Thies 1.5m
+'38cv=1                      	'Multiplier Rh 1.5m
+'39cv=0                      	'Offset Rh 1.5m
+
+S4=0,100,0,1000            	  'RH Vaisalla HMP155A/D 1.5m
+38cv=1                     	  'Multiplier Rh 1.5m
+39cv=0                     	  'Offset Rh 1.5m
+
+'38cv=1                     	'Multiplier Rh HMP155 serial 1.5m
+'39cv=0                     	'Offset Rh 1.5m
+'''''''''''''''''''''''''''''''''
+S5=800,1060,0,5             	'Barometer Thies/Setra
+48cv=1                      	'Multiplier Barometer
+49cv=0                      	'OffsetVariabel B Barometer
+
+'S5=600,1100,0,2.5         	  'Barometer Vaisalla PTB110 (range disesuaikan)
+'48cv=1                     	'Multiplier Barometer
+'49cv=0                     	'Offset Barometer
+'''''''''''''''''''''''''''''''''
+51cv=0                      	'akumulasi Curah hujan
+'''''''''''''''''''''''''''''''''
+'S6=0,1300,0,5              	'Pyranometer Thies
+'608cv=1                    	'Multiplier Pyranometer Thies
+'609cv=0                    	'Offset Pyranometer
+
+'608cv=1                    	'Multiplier Pyranometer Kipp n Zonen CMP6
+'609cv=0                    	'Offset Pyranometer
+
+608cv=1                     	'Multiplier Pyranometer Kipp n Zonen CMP3
+609cv=0                     	'Offset Pyranometer
+
+'S6=0,1500,0,150            	'Multiplier Pyranometer SP Lite
+'608cv=1                    	'Multiplier Pyranometer SP Lite
+'609cv=0                    	'Offset Pyranometer
+
+608cv=1                     	'Multiplier Pyranometer Kipp n Zonen SMP3V  (analog dan modbus)
+609cv=0                     	'Offset Pyranometer
+'''''''''''''''''''''''''''''''''
+'S7=0,2255,0,5              	'PAR Thies
+'78cv=1                     	'Multiplier PAR
+'79cv=0                     	'Offset PAR
+
+'S7=0,3000,0,30             	'PAR Thies
+'78cv=1                     	'Multiplier PAR
+'79cv=0                     	'Offset PAR
+''''''''''''''''''''''''''''''''''
+'S8=0,50,0,5                 	'WS Thies Compact 2m
+'88cv=1                      	'Multiplier WS 2m
+'89cv=0                      	'Offset WS 2m
+
+'S8=0,75,0,1500             	'WS Thies First Class 2m (Frekuensi)
+'88cv=1                     	'Multiplier WS 2m
+'89cv=0                     	'Offset WS 2m
+
+S8=0,75,0,5                	  'WS Casella X100246 2m
+88cv=1                     	  'Multiplier WS 2m
+89cv=0                     	  'Offset WS 2m
+'''''''''''''''''''''''''''''''''
+'S9=0,50,0,5                	'WS Thies Compact 0.5m
+'98cv=1                     	'Multiplier WS 2m
+'99cv=0                     	'Offset WS 2m
+
+'S9=0,75,0,1500             	'WS Thies First Class 0.5m (Frekuensi)
+'98cv=1                     	'Multiplier WS 2m
+'99cv=0                     	'Offset WS 2m
+
+S9=0,75,0,5                	  'WS Casella X100246 0.5m
+98cv=1                     	  'Multiplier WS 2m
+99cv=0                     	  'Offset WS 2m
+'''''''''''''''''''''''''''''''''
+'108cv=1                    	'Turf Min Temp
+'109cv=0
+'''''''''''''''''''''''''''''''''
+'S10=0,100,0,5              	'Penguapan & Water Level
+'310cv=0
+'311cv=0
+'318cv=1                    	'Multiplier Water Level
+'319cv=0                    	'Offset WL
+
+'4+HV(S10,=312cv,w)
+'312cv(w)=(312CV*318cv)+319cv
+''''''''''''''''''''''''''''''''
+
+1SERIAL("{R^M^J}",w)                         'Serial Trh HMP155
+'1MODBUS(AD1,R3:6,=60CV)                     'Modbus Pyrano Kipp n Zonen SMP3V
+
+RA1HSC(1)                               	'Schedule A Untuk Curah Hujan
+'''''''''''''''''''''''''''''''''
+'50CV(W)=(50CV)+0.1                     	'Akumulasi Thies
+
+50CV(W)=(50CV)+0.2                      	'Akumulasi Casella
+'''''''''''''''''''''''''''''''''
+
+RB3s                                    	'Schedule B Untuk Sampling 3s
+'''''''''''''''''''''''''''''''''
+'1+HV(S1,=1cv,W)                        	'WS Thies 2D 10m
+'1CV(w)=(1CV*8cv)+9cv
+'if(1cv<0){1cv=0}
+'if(1cv>60){1cv=60}
+
+'1+HV(S1,=1cv,W)                        	'WS RM Young 05305V 10m
+'1CV(w)=(1CV*8cv)+9cv
+'if(1cv<0){1cv=0}
+'if(1cv>50){1cv=50}
+
+1+HV(S1,=1cv,W)                        	  'WS RM Young 05103V 10m
+1CV(w)=(1CV*8cv)+9cv
+if(1cv<0){1cv=0}
+if(1cv>100){1cv=100}
+
+'2HSC(LT,R,RS,W,=1CV)                   	'WS RM Young 05108 10m
+'1CV(w)=((0.1666*1cv)*8CV)+9CV          	'convert freq to m/s
+'if(1cv<0){1cv=0}
+'if(1cv>50){1cv=50}
+
+'2HSC(LT,R,RS,W,=1CV)                    	'WS RM Young 05305 10m
+'1CV(w)=((0.1666*1cv)*8CV)+9CV           	'Convert Freq to m/s as per Weather Station Datasheet
+'if(1cv<0){1cv=0}
+'if(1cv>50){1cv=50}
+
+'1+HV(S1,=1cv,W)                        	'WS Casella X100246 10m
+'1Cv(w)=(1CV*8CV)+9CV
+'if(1cv<0){1cv=0}
+'if(1cv>75){1CV=75}
+
+'2HSC(LT,R,RS,W,=1CV)                   	'Sample cup anemometer Casella X100246 10m
+'1CV(w)=((0.1666*1cv)*8CV)+9CV          	'Convert freq to m/s as per weather station datasheet
+'if(1cv<0){1cv=0}
+'if(1cv>75){1cv=75}
+
+'1SERIAL("\002%f[1CV]%d[10CV]+%f[6CV]%*17s\e",W,1)     	'WS Thies US Clima Sensor 10m
+'1CV(w)=(1CV*8CV)+9CV
+'10CV(w)=(10CV*18CV)+19CV
+'''''''''''''''''''''''''''''''''
+'1*HV(S2,=10cv,W)                       	'WD Thies 2D 10m
+'10CV(w)=(10CV*18cv)+19cv
+'if(10cv<0){10cv=0}
+'if(10cv>359){10CV=359}
+
+1*HV(S2,=10cv,W)                       	  'WD RM Young 05305V/05103V 10m
+10CV(w)=(10CV*18cv)+19cv
+if(10cv<0){10cv=0}
+if(10cv>359){10CV=359}
+
+'1*HV(=11CV,W)                          	'Output 12V-WD 10m RM Young 05108/05305
+'1+HV(=12CV,W)                          	'WD Excitation
+'10cv(w)=(12cv/11cv)*360
+'10cv(w)=(10CV*18CV)+19CV
+'if(10cv<0){10cv=0}
+'if(10cv>359){10CV=359}
+
+'1*V(S2,=10CV,W)                        	'WD Casella 178035C-04 10m
+'10cv(w)=(10CV*18CV)+19CV
+'if(10cv<0){10cv=0}
+'if(10cv>359){10CV=359}
+'''''''''''''''''''''''''''''''''
+'1-HV(S8,=80cv,W)                        	'Sample Cup Anemometer Thies Compact 2m
+'80Cv(w)=(80CV*88CV)+89CV
+'if(80cv<0){80cv=0}
+'if(80cv>50){80CV=50}
+
+'3HSC(S8,=80cv,W)                       	'Sample Cup Anemometer Thies First Class 2m
+'80Cv(w)=(80CV*88CV)+89CV
+'if(80cv<0){80cv=0}
+'if(80cv>75){80CV=75}
+
+3HSC(LT,R,RS,W,=80CV) 				            'Sample cup Casella X100246 2m (tested)
+80CV(w)=(0.166*80CV)+89CV 			          'Convert freq to m/s as per weather station datasheet
+if(80cv<0){80cv=0}
+if(80cv>75){80CV=75}
+'''''''''''''''''''''''''''''''''
+'3+HV(S9,=90cv,W)                       	'Sample Cup Anemometer Thies Compact 0,5m
+'90CV(w)=(90CV*98CV)+99CV
+'if(90cv<0){90cv=0}
+'if(90cv>50){90cv=50}
+
+'4HSC(S9,=90cv,W)                       	'Sample Cup Anemometer Thies First Class 0.5m
+'90Cv(w)=(90CV*98CV)+99CV
+'if(90cv<0){90cv=0}
+'if(90cv>75){90CV=75}
+
+4HSC(LT,R,RS,W,=90CV) 				            'Sample cup Casella 100246 0,5m (tested)
+90CV(w)=(0.166*90CV)+99CV 			          'Convert freq to m/s as per weather station datasheet
+if(90cv<0){90cv=0}
+if(90cv>50){90cv=50}
+'''''''''''''''''''''''''''''''''
+
+RC10s                                   	'Schedule C Untuk Sampling 10s
+'''''''''''''''''''''''''''''''''
+if(t><23:58:50,23:59:50){314cv(w)=1}
+if(t><01:00:00,09:00:00){68cv(w)=1}
+
+'2PT385(4W,=20cv,W)                      	'Air Temperature Thies 1.5m
+'20cv(w)=(20cv*28cv)+29CV
+'if(20cv<-30){20cv=-30}
+'if(20cv>70){20CV=70}
+
+2*V(S3,=20cv,W)                        	  'Air Temperature Vaisalla HMP155A 1.5m
+20cv(w)=(20cv*28cv)+29CV
+if(20cv<-80){20cv=-80}
+if(20cv>60){20CV=60}
+
+2PT385(4W,=20CV,W)                     	  'Air Temperature Vaisalla HMP155D 1,5m
+20CV(w)=(20CV*28CV)+29CV
+if(20cv<-80){20cv=-80}
+if(20cv>60){20CV=60}
+
+'1SERIAL("RH=%f[30CV] T=%f[20CV]",W)    	'Air Temperature Vaisalla HMP155 serial 1,5m
+'''''''''''''''''''''''''''''''''
+'4HV(S5,=40cv,W)                         	'Barometer Thies
+'40CV(w)=(40CV*48CV)+49CV
+'if(40cv<800){40cv=800}
+'if(40cv>1060){40CV=1060}
+
+4HV(S5,=40cv,W)                         	'Barometer Setra
+40CV(w)=(40CV*48CV)+49CV
+if(40cv<800){40cv=800}
+if(40cv>1100){40CV=1100}
+
+'4HV(S5,=40cv,W)                         	'Barometer Vaisalla PTB110
+'40CV(w)=(40CV*48CV)+49CV
+'if(40cv<600){40cv=600}
+'if(40cv>1100){40CV=1100}
+'''''''''''''''''''''''''''''''''
+'4*HV(S6,=60cv,w)                       	'Pyranometer Thies GSM 10.7
+'60cv(w)=((60cv/0.071)*608CV)+609CV     	'Nilai Sensitivity Lihat di Body Sensor
+'if(60cv<0){60cv=0}
+'if(60cv>1300){60cv=1300}
+'if(60cv>120){69cv=1}
+'260cv(w)=69cv+68cv
+'if(260cv==2){61cv=61cv+1;69cv(w)=0;68cv(w)=0}
+'if(62cv<60cv){62cv=60cv}
+
+'4*V(LM,NA,GL30mV,=60cv,w)           		  'Pyranometer Kipp n Zonen CMP6
+'60cv(w)=((60cv/xxx)*608CV)+609CV       	'xxx = Nilai Sensitivity dibagi 1000 Lihat di Body Sensor
+'if(60cv<0){60cv=0}
+'if(60cv>2000){60cv=2000}
+'if(60cv>120){69cv=1}
+'260cv(w)=69cv+68cv
+'if(260cv==2){62cv=62cv+1;69cv(w)=0;68cv(w)=0}
+'if(62cv<60cv){62cv=60cv}
+
+'4*V(=60cv,w)                          		'Pyranometer Kipp n Zonen CMP3
+'60cv(w)=((60cv/xxx)*608CV)+609CV         'xxx = Nilai Sensitivity dibagi 1000 Lihat di Body Sensor
+'if(60cv<0){60cv=0}
+'if(60cv>2000){60cv=2000}
+'if(60cv>120){69cv=1}
+'260cv(w)=69cv+68cv
+'if(260cv==2){61cv=61cv+1;69cv(w)=0;68cv(w)=0}
+'if(62cv<60cv){62cv=60cv}
+
+'4*V(S6,=60cv,w)                         	'Pyranometer SP Lite
+'60cv(w)=((60cv/xxx)*608CV)+609CV        	'xxx = Nilai Sensitivity dibagi 1000 Lihat di Body Sensor
+'if(60cv<0){60cv=0}
+'if(60cv>1500){60cv=1500}
+'if(60cv>120){69cv=1}
+'260cv(w)=69cv+68cv
+'if(260cv==2){61cv=61cv+1;69cv(w)=0;68cv(w)=0}
+'if(62cv<60cv){62cv=60cv}
+
+4*V(=60cv,w)                          		'Pyranometer Kipp n Zonen SMP3V
+60cv(w)=((60cv/xxx)*608CV)+609CV            'xxx = Nilai Sensitivity dibagi 1000 Lihat di Calibration Certificate
+'60cv(w)=((60cv*608cv)+609cv)               'hanya untuk modbus
+if(60cv<0){60cv=0}
+if(60cv>2000){60cv=2000}
+if(60cv>120){69cv=1}
+260cv(w)=69cv+68cv
+if(260cv==2){61cv=61cv+1;69cv(w)=0;68cv(w)=0}
+if(62cv<60cv){62cv=60cv}
+
+'''''''''''''''''''''''''''''''''
+
+RD1M                                     	'Schedule D Untuk Sampling 1 Menit
+'''''''''''''''''''''''''''''''''
+'3*HV(S4,=30CV,W)                         'RH Thies
+'30CV(w)=(30CV*38CV)+39CV
+'if(30cv<0){30cv=0}
+'if(30cv>100){30CV=100}
+
+3*V(S4,=30CV,W)                         	'RH Vaisalla HMP155A&D
+30CV(w)=(30CV*38CV)+39CV
+if(30cv<0){30cv=0}
+if(30cv>100){30CV=100}
+
+'30CV(w)=(30CV*38CV)+39CV               	'RH Vaisalla HMP155 serial
+'if(30cv<0){30cv=0}
+'if(30cv>100){30CV=100}
+
+'''''''''''''''''''''''''''''''''
+'3-HV(S7,=70cv,W)                       	'Par Thies avg
+'70cv(w)=(70cv*78cv)+79CV
+'if(70cv<0){70cv=0}
+'if(70cv>2255){70CV=2255}
+'70cv(ff0,"Solar PAR_Avg~uMol")
+
+'3-V(S7,=70cv,W)                        	'Par Kipp n Zonen
+'70cv(w)=(70cv*78cv)+79CV
+'if(70cv<0){70cv=0}
+'if(70cv>3000){70CV=3000}
+'70cv(ff0,"Solar PAR_Avg~uMol")
+'''''''''''''''''''''''''''''''''
+'5-PT385(=100cv,II,LM,NA,100,W)         	'Turf Min Temp
+'100cv(w)=(100cv*108cv)+109cv
+'if(100cv<-30){100cv=-30}
+'if(100cv>100){100CV=100}
+'''''''''''''''''''''''''''''''''
+'5SDI12(R202,FF1,=110cv,w)              	'Sentek Bare Soil Temp 0cm
+'''''''''''''''''''''''''''''''''''''''
+'5SDI12(R203,FF1,=120cv,w)              	'Sentek Bare Soil Temp 10cm
+'''''''''''''''''''''''''''''''''''''''
+'5SDI12(R204,FF1,=130cv,w)              	'Sentek Bare Soil Temp 20cm
+'''''''''''''''''''''''''''''''''''''''
+'5SDI12(R205,FF1,=140cv,w)              	'Sentek Bare Soil Temp 30cm
+'''''''''''''''''''''''''''''''''''''''
+'5SDI12(R206,FF1,=150cv,w)              	'Sentek Bare Soil Temp 40cm
+'''''''''''''''''''''''''''''''''''''''
+'5SDI12(R207,FF1,=160cv,w)              	'Sentek Bare Soil Temp 50cm
+'''''''''''''''''''''''''''''''''''''''
+'5SDI12(R211,FF1,=170cv,w)              	'Sentek Bare Soil Temp 100cm
+''''''''''''''''''''''''''''''''''''''''
+'6SDI12(R201,FF1,=180cv,w)              	'Sentek Turf Soil Temp 0cm
+''''''''''''''''''''''''''''''''''''''''
+'6SDI12(R202,FF1,=190cv,w)              	'Sentek Turf Soil Temp 10cm
+''''''''''''''''''''''''''''''''''''''''
+'6SDI12(R203,FF1,=200cv,w)              	'Sentek Turf Soil Temp 20cm
+''''''''''''''''''''''''''''''''''''''''
+'6SDI12(R204,FF1,=210cv,w)              	'Sentek Turf Soil Temp 30cm
+''''''''''''''''''''''''''''''''''''''''
+'6SDI12(R205,FF1,=220cv,w)              	'Sentek Turf Soil Temp 40cm
+''''''''''''''''''''''''''''''''''''''''
+'6SDI12(R206,FF1,=230cv,w)              	'Sentek Turf Soil Temp 50cm
+''''''''''''''''''''''''''''''''''''''''
+'6SDI12(R211,FF1,=240cv,w)              	'Sentek Turf Soil Temp 100cm
+'''''''''''''''''''''''''''''''''''''''''
+'5SDI12(R1,FF0,=250cv,w)                	'Sentek SM 10cm
+'250cv(w)=(250cv*0.0001^3)+(250cv*-0.0196^2)+(250cv*1.3884)+0.3767
+'''''''''''''''''''''''''''''''''''''''''
+'5SDI12(R2,FF0,=260cv,w)                	'Sentek SM 20cm
+'260cv(w)=(260cv*0.0001^3)+(260cv*-0.0196^2)+(260cv*1.3884)+0.3767
+'''''''''''''''''''''''''''''''''''''''''
+'5SDI12(R3,FF0,=270cv,w)                	'Sentek SM 30cm
+'270cv(w)=(270cv*0.0001^3)+(270cv*-0.0196^2)+(270cv*1.3884)+0.3767
+'''''''''''''''''''''''''''''''''''''''''
+'5SDI12(R4,FF0,=280cv,w)                	'Sentek SM 40cm
+'280cv(w)=(280cv*0.0001^3)+(280cv*-0.0196^2)+(280cv*1.3884)+0.3767
+'''''''''''''''''''''''''''''''''''''''''
+'5SDI12(R5,FF0,=290cv,w)                	'Sentek SM 50cm
+'290cv(w)=(290cv*0.0001^3)+(290cv*-0.0196^2)+(290cv*1.3884)+0.3767
+'''''''''''''''''''''''''''''''''''''''''
+'5SDI12(R10,FF0,=300cv,w)               	'Sentek SM 100cm
+'300cv(w)=(300cv*0.0001^3)+(300cv*-0.0196^2)+(300cv*1.3884)+0.3767
+'''''''''''''''''''''''''''''''''''''''''
+'5SDI12(AD0,R001,FF1,=110CV,w)              	'Tekbox Bare soil Temp 0cm
+'5SDI12(AD0,R101,FF1,=120CV,w)              	'Tekbox Bare soil Temp 10cm
+'5SDI12(AD0,R201,FF1,=130CV,w)              	'Tekbox Bare soil Temp 20cm
+'5SDI12(AD0,R301,FF1,=140CV,w)              	'Tekbox Bare soil Temp 30cm
+'5SDI12(AD0,R401,FF1,=150CV,w)              	'Tekbox Bare soil Temp 40cm
+'5SDI12(AD0,R501,FF1,=160CV,w)              	'Tekbox Bare soil Temp 50cm
+'5SDI12(AD0,R601,FF1,=170CV,w)              	'Tekbox Bare soil Temp 100cm
+'5SDI12(AD0,R701,FF1,=180CV,w)              	'Tekbox Turf soil Temp 0cm
+LOGONB
+LOGONC
+LOGOND
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+RE(Data:100MB)10M                       	'Schedule E Untuk Sampling 10 Menit
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'1Relay(w)=1                            	'Aktifkan bila ada soil moisture
+'Delay(w)=5000                          	'Aktifkan bila ada soil moisture
+
+1cv(ff1,=5cv,AV,w)                      	'WS US 10m AVG
+5cv(ff1,"Wind Speed_Avg~m/s")
+1cv(ff1,=2cv,MX,w)                      	'WS US 10m Max
+2cv(ff1,"Wind Speed_Max~m/s")
+
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+10cv(ff0,=15cv,AV,w)                    	'WD 10m (Avg)
+15cv(ff0,"Wind_Dir_Avg~")
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+20CV(ff1,=25cv,AV,w)                    	'Air Temperature  avg 1.5m
+25CV(ff1,"Temp_Avg~C")
+20CV(ff1,=21cv,MX,w)                    	'Air Temperature  max 1.5m
+21CV(ff1,"Temp_Max~C")
+20CV(ff1,=22cv,MN,w)                    	'Air Temperature  min 1.5m
+22CV(ff1,"Temp_Min~C")
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+30cv(ff1,=35cv,AV,w)                    	'Humidity  avg 1.5m
+35cv(ff1,"Humidity_Avg~%")
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+40cv(ff1,=45cv,AV,w)                    	'Pressure avg
+45cv(ff1,"Pressure_Avg~mbar")
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+51cv(ff1,"Akumulasi 24 jam~mm")=51cv+50cv       	'Hujan 1D
+50cv(w)=0
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+60cv(ff0,=65cv,AV,w)                            	'Radiasi avg
+65cv(ff0,"Solar Rad_Avg~Watt/m2")
+60cv(ff0,=62cv,MX,w)                            	'Radiasi Max
+62cv(ff0,"Solar Rad_Max~Watt/m2")
+'if(314cv==1){66cv=61cv/18.96}                  	'lama penyinaran
+'66cv(ff0,"Lamanya Penyinaran~%")
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'70cv(ff0,=75cv,AV,w)                           	'Solar PAR avg
+'75cv(ff0,"Solar PAR_Avg~uMol")
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+80cv(ff1,=85cv,AV,w)                            	'Wind Speed avg 2m
+85cv(ff1,"Wind_Speed 2m_Avg~m/s")
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+90cv(ff1,=95cv,AV,w)                           	  'Wind Speed avg 0.5m
+95cv(ff1,"Wind_Speed 1/2m_Avg~m/s")
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'100cv(ff1,=105cv,AV,w)                         	'Turf Min Temp
+'105cv(ff1,"Turf Min Temp_Avg~C")
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'110cv(ff1,=115cv,AV,w)                         	'Bare Soil 0cm
+'115cv(ff1,"Bare Soil Temp_0cm_Avg~C")
+'120cv(ff1,=125cv,AV,w)                         	'Bare Soil 10cm
+'125cv(ff1,"Bare Soil Temp_10cm_Avg~C")
+'130cv(ff1,=135cv,AV,w)                         	'Bare Soil 20cm
+'135cv(ff1,"Bare Soil Temp_20cm_Avg~C")
+'140cv(ff1,=145cv,AV,w)                         	'Bare Soil 30cm
+'145cv(ff1,"Bare Soil Temp_30cm_Avg~C")
+'150cv(ff1,=155cv,AV,w)                         	'Bare Soil 40cm
+'155cv(ff1,"Bare Soil Temp_40cm_Avg~C")
+'160cv(ff1,=165cv,AV,w)                         	'Bare Soil 50cm
+'165cv(ff1,"Bare Soil Temp_50cm_Avg~C")
+'170cv(ff1,=175cv,AV,w)                         	'Bare Soil 100cm
+'175cv(ff1,"Bare Soil Temp_100cm_Avg~C")
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'180cv(ff1,=185cv,AV,w)                         	'Turf Soil 0cm
+'185cv(ff1,"Turf Soil Temp_0cm_Avg~C")
+'190cv(ff1,=195cv,AV,w)                         	'Turf Soil 10cm
+'195cv(ff1,"Turf Soil Temp_10cm_Avg~C")
+'200cv(ff1,=205cv,AV,w)                         	'Turf Soil 20cm
+'205cv(ff1,"Turf Soil Temp_20cm_Avg~C")
+'210cv(ff1,=215cv,AV,w)                         	'Turf Soil 30cm
+'215cv(ff1,"Turf Soil Temp_30cm_Avg~C")
+'220cv(ff1,=225cv,AV,w)                         	'Turf Soil 40cm
+'225cv(ff1,"Turf Soil Temp_40cm_Avg~C")
+'230cv(ff1,=235cv,AV,w)                         	'Turf Soil 50cm
+'235cv(ff1,"Turf Soil Temp_50cm_Avg~C")
+'240cv(ff1,=245cv,AV,w)                         	'Turf Soil 100cm
+'245cv(ff1,"Turf Soil Temp_100cm_Avg~C")
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'250cv(ff0,=255cv,AV,w)                         	'SM 10cm
+'255cv(ff0,"Soil Moisture_10cm~%")
+'260cv(ff0,=265cv,AV,w)                         	'SM 20cm
+'265cv(ff0,"Soil Moisture_20cm~%")
+'270cv(ff0,=275cv,AV,w)                         	'SM 30cm
+'275cv(ff0,"Soil Moisture_30cm~%")
+'280cv(ff0,=285cv,AV,w)                         	'SM 40cm
+'285cv(ff0,"Soil Moisture_40cm~%")
+'290cv(ff0,=295cv,AV,w)                         	'SM 50cm
+'295cv(ff0,"Soil Moisture_50cm~%")
+'300cv(ff0,=305cv,AV,w)                         	'SM 100cm
+'305cv(ff0,"Soil Moisture_100cm~%")
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'3-HV(S9,=310cv,w)
+'310CV(w)=(310CV*318CV)+319CV                   	'Water Level
+'310cv(ff1,"Water_Level~mm")
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'312cv(w)                                       	'Penguapan
+'if(314cv==1){311cv=(310cv-312cv)+51cv;312cv=310cv}
+'311cv(ff1,"Evaporimeter_Aku_24jam~mm")
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+VEXT(ff1,"Tegangan_Accu~v",=330cv)              	'Tegangan Accu
+'5*HV(ff1,"Teg_Solar~v",=340cv)                 	'Tegangan solar
+VLITH(ff1,"Teg_Bat_Lithium~v",=350cv)           	'Tegangan Battery Lithium
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+LOGONE
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+RF(Data:300kB)10M                               	'Schedule F (Buffer)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+5cv(ff1,"Wind Speed_Avg~m/s")                   	'WS US 10m AVG
+2cv(ff1,"Wind Speed_Max~m/s")                   	'WS US 10m max
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+15cv(ff0,"Wind_Dir_Avg~")                       	'WD 10m (Avg)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+25CV(ff1,"Temp_Avg~C")                          	'Temperature  avg 1.5m
+21CV(ff1,"Temp_Max~C")                          	'Temperature  max 1.5m
+22CV(ff1,"Temp_Min~C")                          	'Temperature  min 1.5m
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+35cv(ff1,"Humidity_Avg~%")                      	'Humidity  avg 1.5m
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+45cv(ff1,"Pressure_Avg~mbar")                   	'Pressure avg
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+51cv(ff1,"Akumulasi 24 jam~mm")                 	'Akumulasi
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+65cv(ff0,"Solar Rad_Avg~Watt/m2")               	'Radiasi avg
+62cv(ff0,"Solar Rad_Max~Watt/m2")               	'Radiasi Max
+'66cv(ff0,"lama penyinaran~%")                  	'lama penyinaran
+'62cv(w)=0;66cv(w)=0
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'75cv(ff1,"Solar PAR_Avg~uMol")                 	'Solar PAR avg
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+85cv(ff1,"Wind_Speed 2m_Avg~m/s")               	'Wind Speed avg 2m
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+95cv(ff1,"Wind_Speed 1/2m_Avg~m/s")            	  'Wind Speed avg 0.5m
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'105cv(ff1,"Turf Min Temp_Avg~C")               	'Turf Min Temp
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'115cv(ff1,"Bare Soil Temp_0cm_Avg~C")          	'Bare Soil 0,10,20,30,40,50,100cm
+'125cv(ff1,"Bare Soil Temp_2cm_Avg~C")
+'135cv(ff1,"Bare Soil Temp_5cm_Avg~C")
+'145cv(ff1,"Bare Soil Temp_10cm_Avg~C")
+'155cv(ff1,"Bare Soil Temp_20cm_Avg~C")
+'165cv(ff1,"Bare Soil Temp_50cm_Avg~C")
+'175cv(ff1,"Bare Soil Temp_100cm_Avg~C")
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'185cv(ff1,"Turf Soil Temp_0cm_Avg~C")          	'Turf Soil 0,10,20,30,40,50,100cm
+'195cv(ff1,"Turf Soil Temp_2cm_Avg~C")
+'205cv(ff1,"Turf Soil Temp_5cm_Avg~C")
+'215cv(ff1,"Turf Soil Temp_10cm_Avg~C")
+'225cv(ff1,"Turf Soil Temp_20cm_Avg~C")
+'235cv(ff1,"Turf Soil Temp_50cm_Avg~C")
+'245cv(ff1,"Turf Soil Temp_100cm_Avg~C")
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'255cv(ff1,"Soil Moisture_2cm_Avg~%")           	'SM 10,20,30,40,50,100cm
+'265cv(ff1,"Soil Moisture_5cm_Avg~%")
+'275cv(ff1,"Soil Moisture_10cm_Avg~%")
+'285cv(ff1,"Soil Moisture_20cm_Avg~%")
+'295cv(ff1,"Soil Moisture_50cm_Avg~%")
+'305cv(ff1,"Soil Moisture_100cm_Avg~%")
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'310cv(ff1,"Water_Level~mm")                    	'Water Level
+'311cv(ff1,"Evaporimeter_Aku_24jam~mm")         	'Evaporimeter
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+330cv(ff1,"Tegangan_Accu~v")                    	'Tegangan Accu
+340cv(ff1,"Teg_Solar~v")                        	'Tegangan Solar Cell
+350cv(ff1,"Teg_Bat_Lithium~v")                  	'Tegangan Battery Lithium
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+LOGONF
+1Relay(w)=0
+1SSPWR(w)=1
+if(314cv==1){51cv=0;314cv=0;311cv=0;68cv=0}     	'Mengembalikan Nilai 51cv, 314cv, 311cv, 68cv ke 0
+
+RG10M                                           	'Schedule G Pengiriman Data ke FTP per 10 Menit
+Do{CopyD Sched=F Dest="ftp://aaws:aaws@aawsbmkg.dyndns.org/xxx_?(Timestamp).csv" Format=csv Alarm=No Start=New} 'FTP push -ganti xxxx dengan nama file
+
+RH10S                                           	'Status FTP
+If1(29SV==2)"Data Terkirim"
+If(29SV==2){29SV=0}
+
+End
+Runjobonreset"AAWS_V20"
