@@ -145,6 +145,7 @@ S5=800,1060,0,5             	'Barometer Thies/Setra
 '608cv=1                    	'Multiplier Pyranometer SP Lite
 '609cv=0                    	'Offset Pyranometer
 
+S6=-200,2000,0,1              'Pyranometer SMP3V
 608cv=1                     	'Multiplier Pyranometer Kipp n Zonen SMP3V  (analog dan modbus)
 609cv=0                     	'Offset Pyranometer
 '''''''''''''''''''''''''''''''''
@@ -370,9 +371,9 @@ if(40cv>1100){40CV=1100}
 'if(260cv==2){61cv=61cv+1;69cv(w)=0;68cv(w)=0}
 'if(62cv<60cv){62cv=60cv}
 
-4*V(=60cv,w)                          		'Pyranometer Kipp n Zonen SMP3V (nonaktif bila bila modbus)
+4*HV(S6,=60cv,w)                          		'Pyranometer Kipp n Zonen SMP3V (tergantung slot yg dipakai modbus atau analog)
 60cv(w)=((60cv/xxx)*608CV)+609CV            'xxx = Nilai Sensitivity dibagi 1000 Lihat di Calibration Certificate (nonaktif bila bila modbus)
-'60cv(w)=((60cv*608cv)+609cv)               'diaktifkan hanya untuk modbus
+'60cv(w)=((60cv*608cv)+609cv)               'modbus & analog selama tidak ada sensitivity
 if(60cv<0){60cv=0}
 if(60cv>2000){60cv=2000}
 if(60cv>120){69cv=1}
