@@ -370,8 +370,8 @@ if(40cv>1100){40CV=1100}
 'if(260cv==2){61cv=61cv+1;69cv(w)=0;68cv(w)=0}
 'if(62cv<60cv){62cv=60cv}
 
-4*V(=60cv,w)                          		'Pyranometer Kipp n Zonen SMP3V
-60cv(w)=((60cv/xxx)*608CV)+609CV            'xxx = Nilai Sensitivity dibagi 1000 Lihat di Calibration Certificate
+4*V(=60cv,w)                          		'Pyranometer Kipp n Zonen SMP3V (nonaktif bila bila modbus)
+60cv(w)=((60cv/xxx)*608CV)+609CV            'xxx = Nilai Sensitivity dibagi 1000 Lihat di Calibration Certificate (nonaktif bila bila modbus)
 '60cv(w)=((60cv*608cv)+609cv)               'diaktifkan hanya untuk modbus
 if(60cv<0){60cv=0}
 if(60cv>2000){60cv=2000}
