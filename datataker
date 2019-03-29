@@ -43,9 +43,6 @@ Profile sersen_port mode="rs485"
 'Profile sersen_port parity="even"
 'Profile modbus_server sersen_address="1"
 
-
-
-
 P28=1                       	'Output 12v cem always on
 P32=5                       	'Significant digit = 5
 P41=0                       	'Sub second decimal places
@@ -67,8 +64,8 @@ P41=0                       	'Sub second decimal places
 '9cv=0                      	'Offset WS 10m
 
 S1=0,100,0,5                	'WS RM young 05103V 10m
-8cv=1                      	  'Muliplier WS 10m
-9cv=0                      	  'Offset WS 10m
+8cv=1                      	    Muliplier WS 10m
+9cv=0                      	    'Offset WS 10m
 
 '8cv=1                       	'Muliplier WS 10m Wind RM Young 05305 (Frekuensi)
 '9cv=0                       	'Offset WS 10m Wind RM Young 05305 (Frekuensi)
@@ -88,9 +85,9 @@ S1=0,100,0,5                	'WS RM young 05103V 10m
 '18cv=1                     	'Multiplier WD 10m
 '19cv=0                     	'Offset WD 10m
 
-S2=0,359,0,5               	  'WD RM Young 05103V 10m
-18cv=1                     	  'Multiplier WD 10m
-19cv=0                     	  'Offset WD 10m
+S2=0,359,0,5               	    'WD RM Young 05103V 10m
+18cv=1                     	    'Multiplier WD 10m
+19cv=0                     	    'Offset WD 10m
 
 '18cv=1                      	'Multiplier WD 05108 10m, 05305
 '19cv=0                      	'Offset 05108 WD10m, 05305
@@ -103,12 +100,12 @@ S2=0,359,0,5               	  'WD RM Young 05103V 10m
 '28cv=1                      	'Multiplier Temp 1.5m
 '29cv=0                      	'Offset Temp 1.5m
 
-S3=-40,60,0,1000           	  'Air Temperature Vaisalla HMP155A  1.5m
-28cv=1                     	  'Multiplier Temp 1.5m
-29cv=0                     	  'Offset Temp 1.5m
+S3=-40,60,0,1000           	    'Air Temperature Vaisalla HMP155A  1.5m
+28cv=1                     	    'Multiplier Temp 1.5m
+29cv=0                     	    'Offset Temp 1.5m
 
-28cv=1                     	  'Multiplier Temp 1.5m Air Temperature Vaisalla HMP155D (PT100)  1.5m
-29cv=0                     	  'Offset Temp 1.5m Air Temperature Vaisalla HMP155D (PT100)  1.5m
+28cv=1                     	    'Multiplier Temp 1.5m Air Temperature Vaisalla HMP155D (PT100)  1.5m
+29cv=0                     	    'Offset Temp 1.5m Air Temperature Vaisalla HMP155D (PT100)  1.5m
 
 '28cv=1                     	'Multiplier Temp 1.5m Air Temperature Vaisalla HMP155 serial 1.5m
 '29cv=0                     	'Offset Temp 1.5m Air Temperature Vaisalla HMP155 serial 1.5m
@@ -117,9 +114,9 @@ S3=-40,60,0,1000           	  'Air Temperature Vaisalla HMP155A  1.5m
 '38cv=1                      	'Multiplier Rh 1.5m
 '39cv=0                      	'Offset Rh 1.5m
 
-S4=0,100,0,1000            	  'RH Vaisalla HMP155A/D 1.5m
-38cv=1                     	  'Multiplier Rh 1.5m
-39cv=0                     	  'Offset Rh 1.5m
+S4=0,100,0,1000            	    'RH Vaisalla HMP155A/D 1.5m
+38cv=1                     	    'Multiplier Rh 1.5m
+39cv=0                     	    'Offset Rh 1.5m
 
 '38cv=1                     	'Multiplier Rh HMP155 serial 1.5m
 '39cv=0                     	'Offset Rh 1.5m
@@ -128,7 +125,7 @@ S5=800,1060,0,5             	'Barometer Thies/Setra
 48cv=1                      	'Multiplier Barometer
 49cv=0                      	'OffsetVariabel B Barometer
 
-'S5=600,1100,0,2.5         	  'Barometer Vaisalla PTB110 (range disesuaikan)
+'S5=600,1100,0,2.5         	    'Barometer Vaisalla PTB110 (range disesuaikan)
 '48cv=1                     	'Multiplier Barometer
 '49cv=0                     	'Offset Barometer
 '''''''''''''''''''''''''''''''''
@@ -167,9 +164,9 @@ S5=800,1060,0,5             	'Barometer Thies/Setra
 '88cv=1                     	'Multiplier WS 2m
 '89cv=0                     	'Offset WS 2m
 
-S8=0,75,0,5                	  'WS Casella X100246 2m
-88cv=1                     	  'Multiplier WS 2m
-89cv=0                     	  'Offset WS 2m
+S8=0,75,0,5                	    'WS Casella X100246 2m
+88cv=1                     	    'Multiplier WS 2m
+89cv=0                     	    'Offset WS 2m
 '''''''''''''''''''''''''''''''''
 'S9=0,50,0,5                	'WS Thies Compact 0.5m
 '98cv=1                     	'Multiplier WS 2m
@@ -179,9 +176,9 @@ S8=0,75,0,5                	  'WS Casella X100246 2m
 '98cv=1                     	'Multiplier WS 2m
 '99cv=0                     	'Offset WS 2m
 
-S9=0,75,0,5                	  'WS Casella X100246 0.5m
-98cv=1                     	  'Multiplier WS 2m
-99cv=0                     	  'Offset WS 2m
+S9=0,75,0,5                	    'WS Casella X100246 0.5m
+98cv=1                     	    'Multiplier WS 2m
+99cv=0                     	    'Offset WS 2m
 '''''''''''''''''''''''''''''''''
 '108cv=1                    	'Turf Min Temp
 '109cv=0
@@ -218,7 +215,7 @@ RB3s                                    	'Schedule B Untuk Sampling 3s
 'if(1cv<0){1cv=0}
 'if(1cv>50){1cv=50}
 
-1+HV(S1,=1cv,W)                        	  'WS RM Young 05103V 10m
+1+HV(S1,=1cv,W)                        	    'WS RM Young 05103V 10m
 1CV(w)=(1CV*8cv)+9cv
 if(1cv<0){1cv=0}
 if(1cv>100){1cv=100}
@@ -252,7 +249,7 @@ if(1cv>100){1cv=100}
 'if(10cv<0){10cv=0}
 'if(10cv>359){10CV=359}
 
-1*HV(S2,=10cv,W)                       	  'WD RM Young 05305V/05103V 10m
+1*HV(S2,=10cv,W)                       	    'WD RM Young 05305V/05103V 10m
 10CV(w)=(10CV*18cv)+19cv
 if(10cv<0){10cv=0}
 if(10cv>359){10CV=359}
@@ -279,8 +276,8 @@ if(10cv>359){10CV=359}
 'if(80cv<0){80cv=0}
 'if(80cv>75){80CV=75}
 
-3HSC(LT,R,RS,W,=80CV) 				            'Sample cup Casella X100246 2m (tested)
-80CV(w)=(0.166*80CV)+89CV 			          'Convert freq to m/s as per weather station datasheet
+3HSC(LT,R,RS,W,=80CV) 				        'Sample cup Casella X100246 2m (tested)
+80CV(w)=(0.166*80CV)+89CV 			        'Convert freq to m/s as per weather station datasheet
 if(80cv<0){80cv=0}
 if(80cv>75){80CV=75}
 '''''''''''''''''''''''''''''''''
@@ -294,8 +291,8 @@ if(80cv>75){80CV=75}
 'if(90cv<0){90cv=0}
 'if(90cv>75){90CV=75}
 
-4HSC(LT,R,RS,W,=90CV) 				            'Sample cup Casella 100246 0,5m (tested)
-90CV(w)=(0.166*90CV)+99CV 			          'Convert freq to m/s as per weather station datasheet
+4HSC(LT,R,RS,W,=90CV) 				        'Sample cup Casella 100246 0,5m (tested)
+90CV(w)=(0.166*90CV)+99CV 			        'Convert freq to m/s as per weather station datasheet
 if(90cv<0){90cv=0}
 if(90cv>50){90cv=50}
 '''''''''''''''''''''''''''''''''
@@ -310,12 +307,12 @@ if(t><01:00:00,09:00:00){68cv(w)=1}
 'if(20cv<-30){20cv=-30}
 'if(20cv>70){20CV=70}
 
-2*V(S3,=20cv,W)                        	  'Air Temperature Vaisalla HMP155A 1.5m
+2*V(S3,=20cv,W)                        	    'Air Temperature Vaisalla HMP155A 1.5m
 20cv(w)=(20cv*28cv)+29CV
 if(20cv<-80){20cv=-80}
 if(20cv>60){20CV=60}
 
-2PT385(4W,=20CV,W)                     	  'Air Temperature Vaisalla HMP155D 1,5m
+2PT385(4W,=20CV,W)                     	    'Air Temperature Vaisalla HMP155D 1,5m
 20CV(w)=(20CV*28CV)+29CV
 if(20cv<-80){20cv=-80}
 if(20cv>60){20CV=60}
@@ -347,7 +344,7 @@ if(40cv>1100){40CV=1100}
 'if(62cv<60cv){62cv=60cv}
 
 '4*V(LM,NA,GL30mV,=60cv,w)           		  'Pyranometer Kipp n Zonen CMP6
-'60cv(w)=((60cv/xxx)*608CV)+609CV       	'xxx = Nilai Sensitivity dibagi 1000 Lihat di Body Sensor
+'60cv(w)=((60cv/xxx)*608CV)+609CV       	  'xxx = Nilai Sensitivity dibagi 1000 Lihat di Body Sensor
 'if(60cv<0){60cv=0}
 'if(60cv>2000){60cv=2000}
 'if(60cv>120){69cv=1}
@@ -356,7 +353,7 @@ if(40cv>1100){40CV=1100}
 'if(62cv<60cv){62cv=60cv}
 
 '4*V(=60cv,w)                          		'Pyranometer Kipp n Zonen CMP3
-'60cv(w)=((60cv/xxx)*608CV)+609CV         'xxx = Nilai Sensitivity dibagi 1000 Lihat di Body Sensor
+'60cv(w)=((60cv/xxx)*608CV)+609CV           'xxx = Nilai Sensitivity dibagi 1000 Lihat di Body Sensor
 'if(60cv<0){60cv=0}
 'if(60cv>2000){60cv=2000}
 'if(60cv>120){69cv=1}
@@ -375,19 +372,18 @@ if(40cv>1100){40CV=1100}
 
 4*V(=60cv,w)                          		'Pyranometer Kipp n Zonen SMP3V
 60cv(w)=((60cv/xxx)*608CV)+609CV            'xxx = Nilai Sensitivity dibagi 1000 Lihat di Calibration Certificate
-'60cv(w)=((60cv*608cv)+609cv)               'hanya untuk modbus
+'60cv(w)=((60cv*608cv)+609cv)               'diaktifkan hanya untuk modbus
 if(60cv<0){60cv=0}
 if(60cv>2000){60cv=2000}
 if(60cv>120){69cv=1}
 260cv(w)=69cv+68cv
 if(260cv==2){61cv=61cv+1;69cv(w)=0;68cv(w)=0}
 if(62cv<60cv){62cv=60cv}
-
 '''''''''''''''''''''''''''''''''
 
 RD1M                                     	'Schedule D Untuk Sampling 1 Menit
 '''''''''''''''''''''''''''''''''
-'3*HV(S4,=30CV,W)                         'RH Thies
+'3*HV(S4,=30CV,W)                           'RH Thies
 '30CV(w)=(30CV*38CV)+39CV
 'if(30cv<0){30cv=0}
 'if(30cv>100){30CV=100}
@@ -400,7 +396,6 @@ if(30cv>100){30CV=100}
 '30CV(w)=(30CV*38CV)+39CV               	'RH Vaisalla HMP155 serial
 'if(30cv<0){30cv=0}
 'if(30cv>100){30CV=100}
-
 '''''''''''''''''''''''''''''''''
 '3-HV(S7,=70cv,W)                       	'Par Thies avg
 '70cv(w)=(70cv*78cv)+79CV
@@ -487,7 +482,6 @@ RE(Data:100MB)10M                       	'Schedule E Untuk Sampling 10 Menit
 5cv(ff1,"Wind Speed_Avg~m/s")
 1cv(ff1,=2cv,MX,w)                      	'WS US 10m Max
 2cv(ff1,"Wind Speed_Max~m/s")
-
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 10cv(ff0,=15cv,AV,w)                    	'WD 10m (Avg)
 15cv(ff0,"Wind_Dir_Avg~")
@@ -521,7 +515,7 @@ RE(Data:100MB)10M                       	'Schedule E Untuk Sampling 10 Menit
 80cv(ff1,=85cv,AV,w)                            	'Wind Speed avg 2m
 85cv(ff1,"Wind_Speed 2m_Avg~m/s")
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-90cv(ff1,=95cv,AV,w)                           	  'Wind Speed avg 0.5m
+90cv(ff1,=95cv,AV,w)                           	    'Wind Speed avg 0.5m
 95cv(ff1,"Wind_Speed 1/2m_Avg~m/s")
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 '100cv(ff1,=105cv,AV,w)                         	'Turf Min Temp
@@ -611,7 +605,7 @@ RF(Data:300kB)10M                               	'Schedule F (Buffer)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 85cv(ff1,"Wind_Speed 2m_Avg~m/s")               	'Wind Speed avg 2m
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-95cv(ff1,"Wind_Speed 1/2m_Avg~m/s")            	  'Wind Speed avg 0.5m
+95cv(ff1,"Wind_Speed 1/2m_Avg~m/s")            	    'Wind Speed avg 0.5m
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 '105cv(ff1,"Turf Min Temp_Avg~C")               	'Turf Min Temp
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
